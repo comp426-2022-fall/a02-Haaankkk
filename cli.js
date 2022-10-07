@@ -44,7 +44,7 @@ if (args.w) {
     longitude = args.w
 }
 // Make a request
-const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' + longitude + '&hourly=temperature_2m&current_weather=true&timezone=' + timezone);
+const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' + longitude + '&hourly=temperature_2m&daily=precipitation_hours&current_weather=true&timezone=' + timezone);
 // Get the data from the request
 const data = await response.json()
 
@@ -53,13 +53,26 @@ if (!args.h) {
 
     const days = args.d
 
-if (days == 0) {
-    console.log("today.")
-} else if (days > 1) {
-    console.log("in " + days + " days.")
-} else {
-    console.log("tomorrow.")
-}
+    if (days == 0) {
+        console.log("today.")
+    } else if (days > 1) {
+        console.log("in " + days + " days.")
+    } else {
+        console.log("tomorrow.")
+    }
+
+    let target
+    if (!args.d) {
+        target = 1
+    } else {
+        target = args.d
+    }
+
+    if (data.daily.precipitation_hours[target] == 0) {
+        console.log("You will not need your galoshes")
+    } else {
+        console.log("You might need your galoshes")
+    }
 
 }
 
