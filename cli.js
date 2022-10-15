@@ -34,7 +34,7 @@ if (args.n) {
 } else if (args.s) {
     latitude = args.s
 } else {
-    console.log("latitude must be in range")
+    console.log("Latitude must be in range")
 }
 
 let longitude = '79'
@@ -43,7 +43,7 @@ if (args.e) {
 } else if (args.w) {
     longitude = args.w
 } else {
-    console.log("longitude must be in range")
+    console.log("Longitude must be in range")
 }
 
 // Make a request
